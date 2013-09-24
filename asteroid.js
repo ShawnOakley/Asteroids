@@ -7,21 +7,24 @@
     this.prototype = new Surrogate();
   }
 
+
+
+
+
   var Asteroid = Asteroids.Asteroid = function(pos, vel) {
     this.size = 1;
-    Asteroids.MovingObject.call(this, pos, vel, Asteroid.RADIUS_BIG, Asteroid.COLOR);
+    Asteroids.MovingObject.call(this, pos, vel, Asteroid.SIDE_BIG, Asteroid.COLOR);
   }
 
   var AsteroidSmall = Asteroids.AsteroidSmall = function(pos, vel) {
     this.size = 2;
-    Asteroids.MovingObject.call(this, pos, vel, Asteroid.RADIUS_SMALL, Asteroid.COLOR_SMALL);
+    Asteroids.MovingObject.call(this, pos, vel, Asteroid.SIDE_SMALL, Asteroid.COLOR_SMALL);
   }
 
   Asteroid.COLOR = "brown";
   Asteroid.COLOR_SMALL = "orange";
-  Asteroid.RADIUS_BIG = 15;
-  Asteroid.RADIUS_SMALL = 10;
-
+  Asteroid.SIDE_BIG = 50;
+  Asteroid.SIDE_SMALL = 20;
   Asteroid.inherits(Asteroids.MovingObject);
   AsteroidSmall.inherits(Asteroids.Asteroid);
 
@@ -31,7 +34,7 @@
 
   Asteroid.randomAsteroid = function(dimX, dimY) {
     startPos = randomPosition(dimX, dimY, 1);
-    random_velocity = (Math.random() * 2 - 1) / 40
+    random_velocity = (Math.random() * 2 - 1) / 60
     startVel = randomPosition(dimX, dimY, random_velocity);
     return new Asteroid(startPos, startVel);
   }

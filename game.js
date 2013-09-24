@@ -11,11 +11,17 @@
     this.addAsteroids(10);
   }
 
-  Game.DIM_X = 1000;
-  Game.DIM_Y = 800;
+  Game.DIM_X = 1200;
+  Game.DIM_Y = 1000;
 
   var img = new Image();
   img.src = 'space.jpg';
+  var asteroid_img = new Image();
+  asteroid_img.src = 'asteroid.jpg';
+  var bullet_img = new Image();
+  bullet_img.src = 'plasma_ball.jpg';
+  var spaceship_img = new Image();
+  spaceship_img.src = 'spaceship.jpg';
 
   Game.prototype.addAsteroids = function(numAsteroids) {
     for (var i = 0; i < numAsteroids; i++) {
@@ -67,12 +73,12 @@
     this.ctx.drawImage(img,0,0);
 
     this.asteroids.forEach (function(asteroid) {
-      asteroid.draw(that.ctx);
+      asteroid.draw(asteroid_img, that.ctx);
     });
     this.bullets.forEach (function(bullet) {
-      bullet.draw(that.ctx);
+      bullet.draw(bullet_img, that.ctx);
     });
-    this.ship.draw(that.ctx);
+    this.ship.draw(spaceship_img, that.ctx);
     this.drawScore();
   }
 

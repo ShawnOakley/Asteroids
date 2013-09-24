@@ -10,12 +10,12 @@
   var Bullet = Asteroids.Bullet = function(pos, vel, game) {
     this.game = game;
     this.lifetime = 100;
-    Asteroids.MovingObject.call(this, pos, vel, Bullet.RADIUS, Bullet.COLOR);
+    Asteroids.MovingObject.call(this, pos, vel, Bullet.SIDE, Bullet.COLOR);
   }
 
   Bullet.inherits(Asteroids.MovingObject);
 
-  Bullet.RADIUS = 2;
+  Bullet.SIDE = 40;
   Bullet.COLOR = "green";
 
   Bullet.prototype.move = function(maxX, maxY) {

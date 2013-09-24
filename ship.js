@@ -7,12 +7,14 @@
     this.prototype = new Surrogate();
   }
 
+
+
   var Ship = Asteroids.Ship = function(pos, vel) {
-    Asteroids.MovingObject.call(this, pos, vel, Ship.RADIUS, Ship.COLOR);
+    Asteroids.MovingObject.call(this, pos, vel, Ship.SIDE, Ship.COLOR);
     this.lives = 3;
   }
 
-  Ship.RADIUS = 10;
+  Ship.SIDE = 40;
   Ship.COLOR = "blue";
 
   Ship.inherits(Asteroids.MovingObject);
@@ -30,21 +32,20 @@
     return new Asteroids.Bullet(bulletPos, bulletVelocity, game);
   }
 
-  Ship.prototype.draw = function(ctx) {
-    Asteroids.MovingObject.prototype.draw.call(this, ctx);
+  Ship.prototype.draw = function(img, ctx) {
+    Asteroids.MovingObject.prototype.draw.call(this, img, ctx);
 
     ctx.fillStyle = this.color;
     ctx.beginPath();
 
-    for (var i = 0; i < this.lives; i++) {
+    for (var i = 0; i < this.lives-1; i++) {
 
-      ctx.arc(
-        (i + 1) * 30,
+      ctx.drawImage(
+        img,
+        (i + 1) * 40,
         15,
-        this.radius,
-        0,
-        2 * Math.PI,
-        false
+        Ship.SIDE,
+        Ship.SIDE
       );
       ctx.fill();
     }

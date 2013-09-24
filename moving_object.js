@@ -2,10 +2,10 @@
 
   var Asteroids = root.Asteroids = (root.Asteroids || {});
 
-  var MovingObject = Asteroids.MovingObject = function(pos, vel, radius, color) {
+  var MovingObject = Asteroids.MovingObject = function(pos, vel, side, color) {
     this.pos = pos;
     this.vel = vel;
-    this.radius = radius;
+    this.side = side;
     this.color = color;
     this.bounce_window = 0;
   }
@@ -30,17 +30,15 @@
 
   }
 
-  MovingObject.prototype.draw = function(ctx) {
+  MovingObject.prototype.draw = function(img, ctx) {
     ctx.fillStyle = this.color;
-    ctx.beginPath();
 
-    ctx.arc(
+    ctx.drawImage(
+      img,
       this.pos[0],
       this.pos[1],
-      this.radius,
-      0,
-      2 * Math.PI,
-      false
+      this.side,
+      this.side
     );
 
     ctx.fill();
@@ -51,9 +49,12 @@
     dY = this.pos[1] - otherObject.pos[1];
     distance = Math.pow(Math.pow(dX,2) + Math.pow(dY, 2), 0.5);
 
-    if ((this.bounce_window === 0) && (distance <= (this.radius + otherObject.radius))) {
+
+    if ((this.bounce_window === 0) && (distance <= (this.side/2 + otherObject.side/2))) {
+      // console.log("true");
       return true;
     }
+    // console.log("true");
     return false;
   }
 })(this);
