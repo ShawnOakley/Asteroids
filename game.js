@@ -11,8 +11,8 @@
     this.addAsteroids(10);
   }
 
-  Game.DIM_X = 500;
-  Game.DIM_Y = 500;
+  Game.DIM_X = 1000;
+  Game.DIM_Y = 800;
 
   var img = new Image();
   img.src = 'space.jpg';
@@ -23,7 +23,6 @@
       if (this.asteroids.some(function(asteroid) {
         return newAsteroid.isCollidedWith(asteroid);
           }) || newAsteroid.isCollidedWith(this.ship)) {
-        console.log("retrying");
         i--;
       } else {
         this.asteroids.push(newAsteroid);
@@ -93,6 +92,9 @@
     that = this;
     this.asteroids.forEach(function(asteroid) {
       if (asteroid.isCollidedWith(that.ship)) {
+        that.score -= 50;
+        alert("Oh no, you were hit!");
+
         asteroid.bounce()
         that.ship.lives -= 1;
         if (that.ship.lives === 0) {
@@ -143,10 +145,10 @@
 
   Game.prototype.bindKeyHandlers = function() {
     that = this;
-    key('w', function(){ that.ship.power([0,-1]); });
-    key('a', function(){ that.ship.power([-1,0]); });
-    key('s', function(){ that.ship.power([0,1]); });
-    key('d', function(){ that.ship.power([1,0]); });
+    key('w', function(){ that.ship.power([0,-1.5]); });
+    key('a', function(){ that.ship.power([-1.5,0]); });
+    key('s', function(){ that.ship.power([0,1.5]); });
+    key('d', function(){ that.ship.power([1.5,0]); });
     key('space', function(){ that.fireBullet(); });
   }
 
