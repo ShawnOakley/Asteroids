@@ -14,14 +14,18 @@
   <h1>Welcome to Asteroids!</h1>
   <div class="screen-container">
     <screen>
+
     </screen>
   </div>
   <div class="attr-buttons">
     <input type="button" class="start-button" value="BEGIN">
+    <input type="button" class="restart-button" value="RESTART">
   </div>
+
 </body>
 
 <script>
+
 
 $(document).ready(function(){
   var canvas = document.createElement("canvas");
@@ -29,12 +33,31 @@ $(document).ready(function(){
   canvas.setAttribute("height", Asteroids.Game.DIM_Y);
 
   var screen = document.getElementsByTagName("screen")[0];
-  screen.appendChild(canvas);
-  game = new Asteroids.Game(canvas.getContext('2d'));
+  var game = new Asteroids.Game(canvas.getContext('2d'));
+  $('.restart-button').hide();
 
   $('.start-button').click(function(){
+    screen.appendChild(canvas);
     game.start();
+    $('.start-button').hide();
+    // $('.restart-button').show();
   });
+
+  // $('.restart-button').click(function(){
+  //   var that = this;
+  //   console.log(game);
+  //   that.game = null;
+  //   console.log(game);
+  //   screen.removeChild(canvas);
+  //
+  //   var canvas = document.createElement("canvas");
+  //   canvas.setAttribute("width", Asteroids.Game.DIM_X);
+  //   canvas.setAttribute("height", Asteroids.Game.DIM_Y);
+  //   var game = new Asteroids.Game(canvas.getContext('2d'));
+  //
+  //   screen.appendChild(canvas);
+  //   game.start();
+  // });
 });
 </script>
 
