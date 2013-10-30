@@ -1,24 +1,41 @@
 <html>
 <head>
   <script src="keymaster.min.js"></script>
+  <script src="jquery-2.0.2.min.js"></script>
   <script src="moving_object.js"></script>
   <script src="asteroid.js"></script>
   <script src="ship.js"></script>
   <script src="bullet.js"></script>
   <script src="game.js"></script>
+  <link rel='stylesheet' href='game.css' type='text/css'>
 </head>
 
 <body>
-  <script>
+  <h1>Welcome to Asteroids!</h1>
+  <div class="screen-container">
+    <screen>
+    </screen>
+  </div>
+  <div class="attr-buttons">
+    <input type="button" class="start-button" value="BEGIN">
+  </div>
+</body>
+
+<script>
+
+$(document).ready(function(){
   var canvas = document.createElement("canvas");
   canvas.setAttribute("width", Asteroids.Game.DIM_X);
   canvas.setAttribute("height", Asteroids.Game.DIM_Y);
 
-  var body = document.getElementsByTagName("body")[0];
-  body.appendChild(canvas);
-
+  var screen = document.getElementsByTagName("screen")[0];
+  screen.appendChild(canvas);
   game = new Asteroids.Game(canvas.getContext('2d'));
-  game.start();
-  </script>
-</body>
+
+  $('.start-button').click(function(){
+    game.start();
+  });
+});
+</script>
+
 </html>

@@ -12,16 +12,16 @@
   }
 
   Game.DIM_X = 1200;
-  Game.DIM_Y = 1000;
+  Game.DIM_Y = 750;
 
   var img = new Image();
-  img.src = 'space.jpg';
+  img.src = 'assets/space.jpg';
   var asteroid_img = new Image();
-  asteroid_img.src = 'asteroid.jpg';
+  asteroid_img.src = 'assets/asteroid.png';
   var bullet_img = new Image();
-  bullet_img.src = 'plasma_ball.jpg';
+  bullet_img.src = 'assets/plasma.png';
   var spaceship_img = new Image();
-  spaceship_img.src = 'spaceship.jpg';
+  spaceship_img.src = 'assets/spaceship.png';
 
   Game.prototype.addAsteroids = function(numAsteroids) {
     for (var i = 0; i < numAsteroids; i++) {
@@ -35,6 +35,7 @@
       }
     }
   }
+
 
   Game.prototype.removeAsteroid = function(asteroid) {
 
@@ -158,13 +159,14 @@
     key('space', function(){ that.fireBullet(); });
   }
 
+  Game.prototype.stop = function () {
+    clearInterval(this.timer);
+  }
+
   Game.prototype.start = function (){
     this.bindKeyHandlers();
     this.timer = setInterval(this.step.bind(this), 33);
   }
 
-  Game.prototype.stop = function () {
-    clearInterval(this.timer);
-  }
 
 })(this);
